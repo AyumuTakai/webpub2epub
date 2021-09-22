@@ -12,6 +12,10 @@
     "webpub2epub": "bin/cli.js",
     "w2e": "bin/cli.js"
   },
+  "files": [
+    "bin",
+    "dist"
+  ],
   "devDependencies": {
     "@types/jsdom": "^16.2.13",
     "@types/node": "^16.9.3",
