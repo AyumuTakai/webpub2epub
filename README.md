@@ -4,6 +4,8 @@ vivliostyle-cliで出力したWebPub形式のデータをEPUB形式の電子文�
 
 ## インストール
 
+    npm install -g https://github.com/AyumuTakai/webpub2epub.git
+
 ## 使いかた
 
     webpub2epub -o 出力ファイル名(output.epub) WebPubディレクトリ
@@ -13,14 +15,15 @@ vivliostyle-cliで出力したWebPub形式のデータをEPUB形式の電子文�
     w2e -o 出力ファイル名 WebPubディレクトリ
 
 ### オプション
-- '-o 出力ファイルのパス' : デフォルト output.epub
-- '--ltr' : ページめくりの方向を左から右へ(左綴じ/横書き/デフォルト)
-- '--rtl' : ページめくりの方向を右から左へ(右綴じ/縦書き向け)
+
+* '-o 出力ファイルのパス' : デフォルト output.epub
+* '--ltr' : ページめくりの方向を左から右へ(左綴じ/横書き/デフォルト)
+* '--rtl' : ページめくりの方向を右から左へ(右綴じ/縦書き)
 
 ## 既知の問題
 
 * 目次にスタイルが適用されない
-* EPUB3.0相当? なので対応していないHTMLタグが多い(XHTML1.1の範囲なら大丈夫かも?)。
+* EPUB3.0相当? なので対応していないHTMLタグが多い(XHTML1.1の範囲なら大丈夫かも?)
 * テストが無い
 
 ## License
