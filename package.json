@@ -1,0 +1,36 @@
+{
+  "name": "webpub2epub",
+  "version": "0.0.1",
+  "main": "bin/cli.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "npx tsc",
+    "start": "node bin/cli.js"
+  },
+  "bin": {
+    "webpub2epub": "bin/cli.js",
+    "w2e": "bin/cli.js"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^16.2.13",
+    "@types/node": "^16.9.3",
+    "@types/w3c-xmlserializer": "^2.0.2",
+    "@typescript-eslint/eslint-plugin": "^4.31.2",
+    "@typescript-eslint/parser": "^4.31.2",
+    "eslint": "^7.32.0",
+    "eslint-config-google": "^0.14.0",
+    "typescript": "^4.4.3"
+  },
+  "dependencies": {
+    "@types/sass": "^1.16.1",
+    "@types/tmp": "^0.2.1",
+    "cac": "^6.7.3",
+    "epub-gen": "https://github.com/AyumuTakai/epub-gen.git",
+    "jsdom": "^17.0.0",
+    "json5": "^2.2.0",
+    "sass": "^1.42.0",
+    "tmp": "^0.2.1",
+    "upath": "^2.0.1",
+    "w3c-xmlserializer": "^3.0.0"
+  }
+}
