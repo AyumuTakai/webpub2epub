@@ -26,23 +26,21 @@ class WebPubConf {
     }
     /**
      * ファイルを読み込んでWebPubConfオブジェクトを返す
-     * @param {string} webpubDir WebPubディレクトリのパス
+     * @param {string} publicationPath publication.jsonの絶対パス
      * @return {WebPubConf} WebPubConfオブジェクト
      */
-    static fromFile(webpubDir) {
+    static fromFile(publicationPath) {
         const conf = new WebPubConf();
-        conf.parsePublicationJson(webpubDir);
+        conf.parsePublicationJson(publicationPath);
         return conf;
     }
     /**
      * JSONファイルを読み込んでオブジェクト化する
-     * @param {string} dir JSONファイルのあるディレクトリのパス
-     * @param {string} filename JSONファイルのファイル名
+     * @param {string} publicationPath publication.jsonの絶対パス
      * @return {PublicationJSON} WebPubオブジェクト
      * @private
      */
-    loadJSON(dir, filename) {
-        const publicationPath = upath_1.default.join(dir, filename);
+    loadJSON(publicationPath) {
         console.log('publication.json:', publicationPath);
         if (!fs_1.default.existsSync(publicationPath)) {
             throw new Error('WebPub設定ファイルが存在しません :' + publicationPath);
@@ -53,11 +51,10 @@ class WebPubConf {
     }
     /**
      * JSONファイルを読み込んで値をプロパティにセットする
-     * @param {string} dir WebPubフォルダ
-     * @param {string} filename ファイル名(publication.json)
+     * @param {string} publicationPath publication.jsonの絶対パス
      */
-    parsePublicationJson(dir, filename = 'publication.json') {
-        const publication = this.loadJSON(dir, filename);
+    parsePublicationJson(publicationPath) {
+        const publication = this.loadJSON(publicationPath);
         this._author = publication.author;
         this._publisher = publication.publisher;
         this.context = publication.context;
@@ -180,7 +177,11 @@ class WebPub2Epub {
      */
     async export(webpub, cliOptions) {
         this.webpubDir = this.normalizeWebpubDir(webpub);
-        this.webpubConf = WebPubConf.fromFile(this.webpubDir);
+        let publicationPath = cliOptions.publication ?? 'publication.json';
+        if (!upath_1.default.isAbsolute(publicationPath)) {
+            publicationPath = upath_1.default.resolve(this.cwd, publicationPath);
+        }
+        this.webpubConf = WebPubConf.fromFile(publicationPath);
         if (this.webpubConf === null) {
             throw new Error('本文が存在しません');
         }

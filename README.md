@@ -8,15 +8,16 @@ vivliostyle-cliで出力したWebPub形式のデータをEPUB形式の電子文�
 
 ## 使いかた
 
-    webpub2epub -o 出力ファイル名(output.epub) WebPubディレクトリ
+    webpub2epub -o 出力ファイル(output.epub) -p publication.jsonのパス WebPubディレクトリ
 
 または
 
-    w2e -o 出力ファイル名 WebPubディレクトリ
+    w2e -o 出力ファイル名 -p publication.jsonのパス WebPubディレクトリ
 
 ### オプション
 
 * '-o 出力ファイルのパス' : デフォルト output.epub
+* '-p publication.jsonのパス' : デフォルト カレントディレクトリ/publication.json
 * '--ltr' : ページめくりの方向を左から右へ(左綴じ/横書き/デフォルト)
 * '--rtl' : ページめくりの方向を右から左へ(右綴じ/縦書き)
 * '--help' : ヘルプ表示

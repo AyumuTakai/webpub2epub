@@ -68,24 +68,22 @@ class WebPubConf {
 
     /**
      * ファイルを読み込んでWebPubConfオブジェクトを返す
-     * @param {string} webpubDir WebPubディレクトリのパス
+     * @param {string} publicationPath publication.jsonの絶対パス
      * @return {WebPubConf} WebPubConfオブジェクト
      */
-    public static fromFile(webpubDir:string):WebPubConf {
+    public static fromFile(publicationPath:string):WebPubConf {
       const conf = new WebPubConf();
-      conf.parsePublicationJson(webpubDir);
+      conf.parsePublicationJson(publicationPath);
       return conf;
     }
 
     /**
      * JSONファイルを読み込んでオブジェクト化する
-     * @param {string} dir JSONファイルのあるディレクトリのパス
-     * @param {string} filename JSONファイルのファイル名
+     * @param {string} publicationPath publication.jsonの絶対パス
      * @return {PublicationJSON} WebPubオブジェクト
      * @private
      */
-    private loadJSON(dir:string, filename:string):PublicationJSON {
-      const publicationPath = path.join(dir, filename);
+    private loadJSON(publicationPath:string):PublicationJSON {
       console.log('publication.json:', publicationPath);
       if ( ! fs.existsSync(publicationPath) ) {
         throw new Error('WebPub設定ファイルが存在しません :' + publicationPath);
@@ -97,11 +95,10 @@ class WebPubConf {
 
     /**
      * JSONファイルを読み込んで値をプロパティにセットする
-     * @param {string} dir WebPubフォルダ
-     * @param {string} filename ファイル名(publication.json)
+     * @param {string} publicationPath publication.jsonの絶対パス
      */
-    public parsePublicationJson(dir:string, filename='publication.json'):any {
-      const publication = this.loadJSON(dir, filename);
+    public parsePublicationJson(publicationPath:string):void {
+        const publication = this.loadJSON(publicationPath);
       this._author = publication.author;
       this._publisher = publication.publisher;
       this.context = publication.context;
@@ -229,7 +226,12 @@ class WebPub2Epub {
      */
     public async export(webpub:string | undefined, cliOptions:any) {
       this.webpubDir = this.normalizeWebpubDir(webpub);
-      this.webpubConf = WebPubConf.fromFile(this.webpubDir);
+
+      let publicationPath = cliOptions.publication ?? 'publication.json';
+      if( ! path.isAbsolute(publicationPath) ) {
+          publicationPath = path.resolve(this.cwd,publicationPath);
+      }
+      this.webpubConf = WebPubConf.fromFile(publicationPath);
 
       if (this.webpubConf === null) {
         throw new Error('本文が存在しません');
