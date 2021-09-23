@@ -14,7 +14,7 @@ const tmp_1 = __importDefault(require("tmp"));
 const OwnedToC_1 = __importDefault(require("./OwnedToC"));
 const sass_1 = __importDefault(require("sass"));
 const Epub = require('epub-gen');
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 /**
  * WebPubの設定
  */

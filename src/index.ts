@@ -10,7 +10,7 @@ import OwnedToC from './OwnedToC';
 import sass from 'sass';
 const Epub = require('epub-gen');
 
-const VERSION = '0.0.2';
+const VERSION = '0.0.3';
 
 // TODO: publication.jsの型についてはvivliostyle-cliのschemaを移植する
 
