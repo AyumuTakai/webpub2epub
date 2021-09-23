@@ -4,7 +4,7 @@ vivliostyle-cliで出力したWebPub形式のデータをEPUB形式の電子文�
 
 ## インストール
 
-    npm install -g https://github.com/AyumuTakai/webpub2epub.git
+    yarn global add https://github.com/AyumuTakai/webpub2epub.git
 
 ## 使いかた
 
