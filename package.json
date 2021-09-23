@@ -38,5 +38,8 @@
     "upath": "^2.0.1",
     "w3c-xmlserializer": "^3.0.0"
   },
-  "author": "Ayumu Takai"
+  "author": "Ayumu Takai",
+  "engines": {
+    "node": ">=15"
+  }
 }
