@@ -10,7 +10,7 @@ import OwnedToC from './OwnedToC';
 import sass from 'sass';
 const Epub = require('epub-gen');
 
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 
 // TODO: publication.jsの型についてはvivliostyle-cliのschemaを移植する
 
@@ -389,7 +389,7 @@ class WebPub2Epub {
      */
     private contentFilename(entry:any, no:number):string {
       if (entry.title) {
-        const title = entry.title.toLowerCase().replaceAll(/[^0-9A-Za-z-_:.]+/gu,'').replaceAll(' ', '-');
+        const title = entry.title.toLowerCase().replaceAll(' ', '-').replaceAll(/[^0-9A-Za-z-_:.]+/gu,'');
         console.log('title:',title);
         return `${no}_${title}`;
       } else {

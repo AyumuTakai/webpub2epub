@@ -14,7 +14,7 @@ const tmp_1 = __importDefault(require("tmp"));
 const OwnedToC_1 = __importDefault(require("./OwnedToC"));
 const sass_1 = __importDefault(require("sass"));
 const Epub = require('epub-gen');
-const VERSION = '0.0.1';
+const VERSION = '0.0.2';
 /**
  * WebPubの設定
  */
@@ -314,7 +314,7 @@ class WebPub2Epub {
             tocEntry = tocFile.name;
             this.toc.write(tocEntry);
         }
-        fs_1.default.writeFileSync('test.scss', css);
+        // fs.writeFileSync('test.scss', css);
         const rendered = sass_1.default.renderSync({ data: css });
         // console.log(rendered);
         css = rendered.css.toString();
@@ -332,8 +332,8 @@ class WebPub2Epub {
      */
     contentFilename(entry, no) {
         if (entry.title) {
-            const title = entry.title.toLowerCase().replaceAll(/[^0-9A-Za-z-_:.]+/gu, '').replaceAll(' ', '-');
-            console.log('title', title);
+            const title = entry.title.toLowerCase().replaceAll(' ', '-').replaceAll(/[^0-9A-Za-z-_:.]+/gu, '');
+            console.log('title:', title);
             return `${no}_${title}`;
         }
         else {
