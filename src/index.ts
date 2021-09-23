@@ -406,6 +406,7 @@ module.exports = ()=>{
   cli
       .command('[webpub]', 'Source webpub directory')
       .option('-o, --output <filepath>', 'output filepath', {default: 'output.epub'})
+      .option('-p, --publication <filepath>', 'publication.json filepath', {default:'[webpub]/publication.json'})
       .option('--rtl', 'page progression direction right to left', {default: false})
       .option('--ltr', 'page progression direction left to right', {default: true})
       .action((webpub:string, options:any)=>{
@@ -417,5 +418,6 @@ module.exports = ()=>{
             });
       });
   cli.version(VERSION);
+  cli.help();
   cli.parse();
 };
